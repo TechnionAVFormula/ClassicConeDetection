@@ -1,1 +1,5 @@
+The algorithms in this repository detect cones and characterize the cones by colour. 
 
+It contains the following scripts :
+
+1) Template matching + K-means classifier 
