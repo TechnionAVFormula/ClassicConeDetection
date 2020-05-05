@@ -3,3 +3,8 @@ The algorithms in this repository detect cones and characterize the cones by col
 It contains the following scripts :
 
 1) Template matching + K-means classifier 
+2) HSV classifier
+3) RGB classifier
+4) Masking an image
+
+There is a test file to test any function needed from the template_matching.py
