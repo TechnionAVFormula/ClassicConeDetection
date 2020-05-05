@@ -1,19 +1,18 @@
-import cv2
-import matplotlib.pyplot as plt
-from PIL import Image as pilimage
-import sys, os
-import pandas as pd
+#imports
 import matplotlib.patches as patches
+from sklearn.cluster import KMeans
+from PIL import Image as pilimage
 import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
-import colorsys
-import copy
-import os
-import argparse
+import sys, os
 import imutils
+import copy
 import glob
 import time
-from sklearn.cluster import KMeans
+import cv2
+#end of imports
 
 class Image():
     def __init__(self, filePath):
@@ -24,7 +23,6 @@ class Image():
         self.boxPoints = 0
         self.loadImage(False)
         self.loadBoxPoints()
-        self.plotImageWithBox()
         self.classifiedImage = 0
 
     def loadImage(self, showFlag):
@@ -92,30 +90,6 @@ class Image():
                 self.image[i][j] = (0,0,0)
             pass
         pass
-
-        #cv2.imshow("masked image", self.image)
-        #cv2.waitKey(0)
-
-    def imageHistogram(self):
-        cv2.imshow("Original image before HSV", self.image)
-        rgbImage = copy.copy(self.image)
-
-        hsv = cv2.cvtColor(rgbImage, cv2.COLOR_BGR2HSV)
-        blur_hsv = cv2.GaussianBlur(hsv, (5, 5), 0)
-        # channels
-        ch1, ch2, ch3 = cv2.split(blur_hsv)
-        # range blue color
-        blue_color_l = (0, 0, 0)
-        blue_color_d = (240, 270, 100)
-
-        mask = cv2.inRange(blur_hsv, blue_color_l, blue_color_d)
-        new_S = cv2.bitwise_and(blur_hsv, blur_hsv, mask=mask)
-        cv2.imshow('blue', new_S)
-        hist_ch2 = cv2.calcHist(ch2, [0], None, [256], [0, 256])
-        plt.plot(hist_ch2)
-        plt.show()
-        pass
-
 
     def imageHSV_ratio(self, showColorPlot=False):
         imgB = self.image
@@ -353,17 +327,15 @@ class Images():
     def loadImagesFromFolder(self, folderPath):
         pass
 
-    def totalHistogram(self):
-        pass
 
-
-
+'''
 path = ".\yolo_cones\data\Combo_img\in5_0002"
 image = Image(path)
 image.imageMask()
-#image.maskTemplate()
+image.maskTemplate()
 start_time = time.time()
 image.imageShowRectHSV()
 end_time = time.time()
 print("time : {}".format(end_time - start_time))
 print('Done')
+'''
